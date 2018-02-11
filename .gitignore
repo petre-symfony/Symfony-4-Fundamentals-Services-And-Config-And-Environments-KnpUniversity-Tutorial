@@ -1,5 +1,4 @@
 ###> symfony/framework-bundle ###
-.env
 /public/bundles/
 /var/
 /vendor/
@@ -13,4 +12,4 @@
 .phpunit
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
-/nbproject
+/nbproject/
