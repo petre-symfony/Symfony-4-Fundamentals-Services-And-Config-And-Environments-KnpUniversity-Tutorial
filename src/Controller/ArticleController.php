@@ -8,8 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
-use Michelf\MarkdownInterface;
-use Symfony\Component\Cache\Adapter\AdapterInterface;
 use App\Service\MarkdownHelper;
 
 class ArticleController extends AbstractController
@@ -25,7 +23,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/news/{slug}", name="article_show")
      */
-    public function show($slug, MarkdownInterface $markdown, AdapterInterface $cache, MarkdownHelper $markdownHelper)
+    public function show($slug, MarkdownHelper $markdownHelper)
     {
         $comments = [
             'I ate a normal rock once. It did NOT taste like bacon!',
@@ -52,7 +50,7 @@ cow est ribeye adipisicing. Pig hamburger pork belly enim. Do porchetta minim ca
 fugiat.
 EOF;
         
-        $articleContent = $markdownHelper->parse($articleContent, $cache, $markdown);
+        $articleContent = $markdownHelper->parse($articleContent);
         
         return $this->render('article/show.html.twig', [
             'title' => ucwords(str_replace('-', ' ', $slug)),
