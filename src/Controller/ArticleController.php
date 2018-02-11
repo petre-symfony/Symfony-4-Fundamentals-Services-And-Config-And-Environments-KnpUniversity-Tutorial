@@ -12,6 +12,11 @@ use App\Service\MarkdownHelper;
 
 class ArticleController extends AbstractController
 {
+  
+    public function __construct(bool $isDebug) {
+      dump($isDebug);die;
+    }
+
     /**
      * @Route("/", name="app_homepage")
      */
@@ -23,9 +28,8 @@ class ArticleController extends AbstractController
     /**
      * @Route("/news/{slug}", name="article_show")
      */
-    public function show($slug, MarkdownHelper $markdownHelper, bool $isDebug)
+    public function show($slug, MarkdownHelper $markdownHelper)
     {
-        dump($isDebug); die;
         $comments = [
             'I ate a normal rock once. It did NOT taste like bacon!',
             'Woohoo! I\'m going on an all-asteroid diet!',
