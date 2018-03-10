@@ -19,7 +19,7 @@ class ArticleController extends AbstractController
      */
     private $isDebug;
     
-    public function __construct(bool $isDebug, Client $slack) {
+    public function __construct(bool $isDebug) {
       $this->isDebug = $isDebug;
     }
 
@@ -42,11 +42,6 @@ class ArticleController extends AbstractController
             ->withIcon(':ghost:')
             ->setText('Ah, Kirk, my old friend...')
           ;
-
-          $message->attach((new Attachment())
-               ->setFallback('Some fallback text')
-               ->setText('The attachment text')
-           );
 
           $slack->sendMessage($message);
         }
