@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 use App\Service\MarkdownHelper;
-use Nexy\Slack\Client;
+use App\Service\SlackClient;
 
 class ArticleController extends AbstractController
 {
@@ -34,16 +34,10 @@ class ArticleController extends AbstractController
     /**
      * @Route("/news/{slug}", name="article_show")
      */
-    public function show($slug, MarkdownHelper $markdownHelper, Client $slack)
+    public function show($slug, MarkdownHelper $markdownHelper, SlackClient $slack)
     {
         if($slug == 'Kkaaaan'){
-          $message = $slack->createMessage()
-            ->from('Khan')
-            ->withIcon(':ghost:')
-            ->setText('Ah, Kirk, my old friend...')
-          ;
-
-          $slack->sendMessage($message);
+          $slack->sendMessage('Khan', 'Ah, Kirk, my old friend...');
         }
         $comments = [
             'I ate a normal rock once. It did NOT taste like bacon!',
