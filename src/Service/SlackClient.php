@@ -16,6 +16,11 @@ class SlackClient {
     $this->slack = $slack;
   }
   
+  /**
+   * 
+   * @param LoggerInterface $logger
+   * @required
+   */
   public function setLogger(LoggerInterface $logger){
     $this->logger = $logger;
   }
