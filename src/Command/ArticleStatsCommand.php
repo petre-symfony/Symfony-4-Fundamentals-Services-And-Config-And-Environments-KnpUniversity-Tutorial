@@ -34,7 +34,12 @@ class ArticleStatsCommand extends Command
         
         switch($input->getOption('format')){
           case 'text':
-            $io->listing($data);
+            $rows = [];
+            foreach($data as $key => $val){
+              $rows[] = [$key, $val];
+            }
+            $io->table(['Key', 'Value'], $rows);
+            
             break;
           case 'json':
             $io->write(\GuzzleHttp\json_encode($data));
