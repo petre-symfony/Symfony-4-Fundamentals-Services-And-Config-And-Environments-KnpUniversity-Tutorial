@@ -29,13 +29,15 @@ class ArticleStatsCommand extends Command
 
         $data = [
           'slug' => $slug,
-          'hearts' => random(10, 100)
+          'hearts' => rand(10, 100)
         ];
         
         switch($input->getOption('format')){
           case 'text':
+            $io->listing($data);
             break;
           case 'json':
+            $io->write(\GuzzleHttp\json_encode($data));
             break;
           default:
             throw new \Exception('What kind of crazy format is that!?');
