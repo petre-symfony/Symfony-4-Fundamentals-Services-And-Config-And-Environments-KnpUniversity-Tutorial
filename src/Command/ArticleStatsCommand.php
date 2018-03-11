@@ -25,16 +25,20 @@ class ArticleStatsCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
-        $arg1 = $input->getArgument('arg1');
+        $slug = $input->getArgument('slug');
 
-        if ($arg1) {
-            $io->note(sprintf('You passed an argument: %s', $arg1));
+        $data = [
+          'slug' => $slug,
+          'hearts' => random(10, 100)
+        ];
+        
+        switch($input->getOption('format')){
+          case 'text':
+            break;
+          case 'json':
+            break;
+          default:
+            throw new \Exception('What kind of crazy format is that!?');
         }
-
-        if ($input->getOption('option1')) {
-            // ...
-        }
-
-        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
     }
 }
